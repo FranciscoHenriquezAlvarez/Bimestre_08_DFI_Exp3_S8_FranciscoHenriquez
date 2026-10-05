@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -r https://github.com/FranciscoHenriquezAlvarez/Francisco_PFY2201_React_Semana8.git"
+    "deploy": "gh-pages -d dist -r https://github.com/FranciscoHenriquezAlvarez/Bimestre_08_DFI_Exp3_S8_FranciscoHenriquez.git"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
