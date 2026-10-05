@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nombre": "EA SPORTS FC 26",
+    "categoria": "Deportes",
+    "precioNormal": 69990,
+    "precioOferta": 49990,
+    "imagen": "img/fc26.jpg",
+    "descripcion": "Disfruta una nueva temporada de fútbol con EA SPORTS FC 26."
+  },
+  {
+    "id": 2,
+    "nombre": "Minecraft",
+    "categoria": "Aventura",
+    "precioNormal": 29990,
+    "precioOferta": 19990,
+    "imagen": "img/minecraft.jpg",
+    "descripcion": "Explora, construye y sobrevive en un mundo generado con posibilidades infinitas."
+  },
+  {
+    "id": 3,
+    "nombre": "Mortal Kombat",
+    "categoria": "Lucha",
+    "precioNormal": 49990,
+    "precioOferta": 34990,
+    "imagen": "img/mortal-kombat.jpg",
+    "descripcion": "Enfrenta combates intensos con personajes clásicos de la legendaria saga."
+  }
+]

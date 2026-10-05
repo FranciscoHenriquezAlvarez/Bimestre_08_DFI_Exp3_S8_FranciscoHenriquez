@@ -1,0 +1,579 @@
+/* ========================================
+   VARIABLES GENERALES
+======================================== */
+
+:root {
+  --color-principal: #111827;
+  --color-secundario: #dc2626;
+  --color-fondo: #f3f4f6;
+  --color-tarjeta: #ffffff;
+  --color-texto: #1f2937;
+  --color-claro: #ffffff;
+  --color-borde: #d1d5db;
+  --color-enlace: #fbbf24;
+
+  --sombra-tarjeta:
+    0 0.25rem 0.75rem rgba(0, 0, 0, 0.10);
+}
+
+
+/* ========================================
+   CONFIGURACIÓN GENERAL
+======================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.contenedor {
+  width: min(68.75rem, 92%);
+  margin: 0 auto;
+}
+
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.encabezado-principal {
+  background-color: var(--color-principal);
+  color: var(--color-claro);
+
+  text-align: center;
+
+  padding: 2.5rem 1.25rem;
+
+  border-bottom:
+    0.3125rem solid var(--color-secundario);
+}
+
+.encabezado-principal h1 {
+  margin: 0;
+
+  font-size: 2.625rem;
+  font-weight: 700;
+}
+
+.encabezado-principal p {
+  margin: 0.625rem 0 0;
+
+  font-size: 1.125rem;
+}
+
+
+/* ========================================
+   NAVEGACIÓN
+======================================== */
+
+.navbar {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ========================================
+   CARRUSEL
+======================================== */
+
+.seccion-carrusel {
+  background-color: var(--color-principal);
+
+  padding: 1.25rem 0;
+}
+
+#carruselPrincipal {
+  width: min(68.75rem, 92%);
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  border-radius: 0.625rem;
+
+  background-color: #202938;
+}
+
+#carruselPrincipal .carousel-item {
+  background-color: #202938;
+}
+
+#carruselPrincipal .carousel-item img {
+  width: 100%;
+  height: 28rem;
+
+  object-fit: contain;
+
+  background-color: #202938;
+}
+
+#carruselPrincipal .carousel-control-prev,
+#carruselPrincipal .carousel-control-next {
+  width: 10%;
+}
+
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+======================================== */
+
+.contenido-principal {
+  margin: 1.875rem auto;
+
+  padding: 1.25rem 0;
+}
+
+
+/* ========================================
+   PRODUCTOS
+======================================== */
+
+.seccion-productos h2 {
+  text-align: center;
+
+  font-size: 1.875rem;
+
+  margin: 0 0 1.875rem;
+
+  color: var(--color-principal);
+}
+
+.product-card {
+  width: 100%;
+  height: 100%;
+
+  padding: 1.25rem;
+
+  background-color: var(--color-tarjeta);
+
+  border: 1px solid var(--color-borde);
+  border-radius: 0.625rem;
+
+  text-align: center;
+
+  box-shadow: var(--sombra-tarjeta);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  border-color: var(--color-secundario);
+
+  transform: translateY(-0.25rem);
+
+  box-shadow:
+    0 0.5rem 1.125rem rgba(0, 0, 0, 0.14);
+}
+
+.product-image-container {
+  height: 18rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-card .product-image {
+  width: 100%;
+  max-width: 15.625rem;
+  height: 100%;
+
+  object-fit: contain;
+
+  margin: 0 auto;
+
+  border: 3px solid var(--color-borde);
+  border-radius: 0.5rem;
+}
+
+.product-card .card-body {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem 0.5rem 0.25rem;
+}
+
+.product-card .card-title {
+  color: var(--color-principal);
+
+  font-size: 1.375rem;
+  font-weight: 700;
+
+  margin-bottom: 0.9375rem;
+}
+
+.product-description {
+  text-align: left;
+
+  margin-bottom: 0.75rem;
+}
+
+.product-prices {
+  margin-top: auto;
+  margin-bottom: 0.75rem;
+
+  text-align: left;
+}
+
+.precio-normal {
+  display: block;
+
+  color: #6b7280;
+
+  text-decoration: line-through;
+}
+
+.precio-oferta {
+  display: block;
+
+  color: var(--color-secundario);
+
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.product-card .btn {
+  margin-top: auto;
+}
+
+
+/* ========================================
+   FILTRO DE PRODUCTOS
+======================================== */
+
+.filtro-productos {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+
+  gap: 1.25rem;
+
+  margin-bottom: 3rem;
+  padding: 1.25rem;
+
+  background-color: var(--color-tarjeta);
+
+  border: 1px solid var(--color-borde);
+  border-radius: 0.625rem;
+
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.filtro-productos .form-label {
+  color: var(--color-principal);
+
+  font-weight: 700;
+}
+
+.filtro-productos .form-control,
+.filtro-productos .form-select {
+  border: 1px solid var(--color-borde);
+}
+
+.filtro-productos .form-control:focus,
+.filtro-productos .form-select:focus {
+  border-color: var(--color-secundario);
+
+  box-shadow:
+    0 0 0 0.2rem rgba(220, 38, 38, 0.15);
+}
+
+.mensaje-sin-productos {
+  text-align: center;
+
+  margin-top: 1rem;
+}
+
+
+/* ========================================
+   CARRITO
+======================================== */
+
+.seccion-carrito {
+  margin-top: 3rem;
+}
+
+#carrito h2 {
+  color: var(--color-principal);
+}
+
+
+/* ========================================
+   ZONA DE INFORMACIÓN
+======================================== */
+
+.seccion-informacion {
+  margin-top: 4rem;
+}
+
+.seccion-informacion > h2 {
+  margin-bottom: 1.875rem;
+
+  color: var(--color-principal);
+
+  text-align: center;
+
+  font-size: 1.875rem;
+}
+
+.info-card {
+  height: 100%;
+
+  padding: 1.75rem;
+
+  background-color: var(--color-principal);
+  color: var(--color-claro);
+
+  border-radius: 0.625rem;
+
+  text-align: center;
+
+  box-shadow: var(--sombra-tarjeta);
+
+  border-bottom:
+    0.25rem solid var(--color-secundario);
+}
+
+.info-card h3 {
+  margin-bottom: 1rem;
+
+  color: var(--color-enlace);
+
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.info-card p {
+  margin: 0;
+}
+
+
+/* ========================================
+   CONTACTO
+======================================== */
+
+.seccion-contacto {
+  margin-top: 4rem;
+
+  padding: 2rem;
+
+  background-color: var(--color-tarjeta);
+
+  border: 1px solid var(--color-borde);
+  border-radius: 0.625rem;
+
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.contacto-contenido {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.8fr)
+    minmax(0, 1.2fr);
+
+  gap: 3rem;
+
+  align-items: start;
+}
+
+.contacto-informacion {
+  padding: 1rem;
+}
+
+.contacto-informacion h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+
+  color: var(--color-principal);
+
+  font-size: 1.875rem;
+}
+
+.contacto-informacion p {
+  margin-bottom: 1rem;
+}
+
+.formulario-contacto {
+  padding: 1rem;
+}
+
+.formulario-contacto .form-label {
+  color: var(--color-principal);
+
+  font-weight: 700;
+}
+
+.formulario-contacto .form-control {
+  border: 1px solid var(--color-borde);
+}
+
+.formulario-contacto .form-control:focus {
+  border-color: var(--color-secundario);
+
+  box-shadow:
+    0 0 0 0.2rem rgba(220, 38, 38, 0.15);
+}
+
+.formulario-contacto textarea {
+  resize: vertical;
+
+  min-height: 8rem;
+}
+
+.formulario-contacto .btn-danger {
+  background-color: var(--color-secundario);
+
+  border-color: var(--color-secundario);
+}
+
+.formulario-contacto .btn-danger:hover {
+  background-color: #b91c1c;
+
+  border-color: #b91c1c;
+}
+
+
+/* ========================================
+   PIE DE PÁGINA
+======================================== */
+
+footer {
+  background-color: var(--color-principal) !important;
+
+  color: var(--color-claro);
+
+  margin-top: 2.5rem !important;
+
+  border-top:
+    0.3125rem solid var(--color-secundario);
+}
+
+footer a {
+  color: var(--color-enlace) !important;
+
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* ========================================
+   RESPONSIVE - TABLET
+======================================== */
+
+@media (max-width: 768px) {
+
+  #carruselPrincipal .carousel-item img {
+    height: 20rem;
+  }
+
+  .encabezado-principal h1 {
+    font-size: 2.125rem;
+  }
+
+  .product-image-container {
+    height: 16rem;
+  }
+
+  .filtro-productos {
+    grid-template-columns: 1fr;
+  }
+
+  .contacto-contenido {
+    grid-template-columns: 1fr;
+
+    gap: 1rem;
+  }
+}
+
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+======================================== */
+
+@media (max-width: 480px) {
+
+  body {
+    font-size: 0.9375rem;
+  }
+
+  #carruselPrincipal .carousel-item img {
+    height: 15rem;
+  }
+
+  .encabezado-principal {
+    padding: 1.875rem 1rem;
+  }
+
+  .encabezado-principal h1 {
+    font-size: 1.875rem;
+  }
+
+  .encabezado-principal p {
+    font-size: 1rem;
+  }
+
+  .contenido-principal {
+    margin: 1.25rem auto;
+
+    padding: 0.625rem 0;
+  }
+
+  .seccion-productos h2,
+  .seccion-informacion > h2 {
+    font-size: 1.625rem;
+  }
+
+  .product-card {
+    padding: 1.125rem;
+  }
+
+  .product-card:hover {
+    transform: none;
+  }
+
+  .product-image-container {
+    height: 15rem;
+  }
+
+  .filtro-productos {
+    padding: 1rem;
+
+    margin-bottom: 2rem;
+  }
+
+  .seccion-contacto {
+    padding: 1rem;
+  }
+
+  .contacto-informacion,
+  .formulario-contacto {
+    padding: 0.5rem;
+  }
+}
