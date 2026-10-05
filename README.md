@@ -455,15 +455,6 @@ Antes de finalizar la entrega se verificó:
 
 ---
 
-## 📚 Actividad académica
-
-**Asignatura:** Desarrollo Frontend I (PFY2201)  
-**Actividad:** Experiencia 3 - Semana 8  
-**Proyecto:** Mortal Store  
-**Estudiante:** Francisco Henríquez  
-
----
-
 ## 🔗 Enlaces del proyecto
 
 **Repositorio:**  
