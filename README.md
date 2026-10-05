@@ -1,65 +1,74 @@
-# Mortal Store
+# Bimestre_08_DFI_Exp3_S8_FranciscoHenriquez
 
-Mortal Store es una aplicación web de eCommerce de videojuegos desarrollada con React y Vite como parte de la actividad evaluada de la Semana 8 de la asignatura Desarrollo Frontend I (PFY2201).
+# 🎮 Mortal Store
 
-Esta versión continúa el proyecto desarrollado durante las semanas anteriores e incorpora la gestión de estados con `useState`, efectos secundarios con `useEffect`, carga dinámica de productos mediante `fetch`, renderizado condicional y mejoras en la organización y reutilización del código.
+Proyecto desarrollado progresivamente para la asignatura Desarrollo Frontend I (PFY2201).
 
-## Funcionalidades
+Esta entrega corresponde a la evolución de Mortal Store durante la Semana 8, una tienda web de videojuegos desarrollada utilizando React, Vite, JavaScript, Bootstrap 5, CSS3 y JSON.
 
-La aplicación incluye las siguientes funcionalidades:
+En esta versión se profundiza el uso de Hooks de React mediante `useState` y `useEffect`, incorporando carga dinámica de productos con `fetch`, actualización del estado de la aplicación, renderizado condicional y mejoras en la organización y reutilización del código.
 
-- Carga dinámica del catálogo de videojuegos desde un archivo JSON local.
-- Visualización de nombre, imagen y descripción de cada producto.
-- Visualización de precio normal y precio de oferta.
-- Carrusel de promociones destacadas.
-- Búsqueda de productos por nombre.
-- Filtro de productos por categoría.
-- Navegación directa por categorías desde el menú.
-- Mensaje condicional cuando una búsqueda no encuentra productos.
-- Estado visual durante la carga del catálogo.
-- Mensaje de error cuando no es posible cargar los productos.
-- Agregar productos al carrito de compras.
-- Aumentar la cantidad de un producto en el carrito.
-- Disminuir la cantidad de un producto.
-- Eliminación automática del producto cuando su cantidad llega a cero.
-- Eliminación completa de un producto mediante un botón dedicado.
-- Confirmación antes de eliminar completamente un producto del carrito.
-- Cálculo del subtotal de cada producto.
-- Cálculo de la cantidad total de productos.
-- Cálculo del precio total del carrito.
-- Contador dinámico de productos en la barra de navegación.
-- Mensaje condicional cuando el carrito está vacío.
-- Indicador visual cuando un producto se encuentra en el carrito.
-- Cambio condicional del texto y estilo del botón según el estado del producto.
-- Persistencia del carrito utilizando `localStorage`.
-- Formulario de contacto interactivo.
-- Mensaje de confirmación mediante renderizado condicional.
-- Diseño responsive para escritorio, tablet y dispositivos móviles.
+---
 
-## Tecnologías utilizadas
+## 🎯 Objetivo del proyecto
 
-- React
-- Vite
-- JavaScript
-- JSX
+El objetivo de esta actividad es continuar el desarrollo de la aplicación eCommerce aplicando Hooks de React para administrar estados y efectos secundarios.
+
+La aplicación permite cargar dinámicamente un catálogo de videojuegos, buscar y filtrar productos, agregarlos al carrito, modificar sus cantidades, eliminarlos y calcular automáticamente el total de la compra.
+
+Además, se implementa renderizado condicional para modificar la interfaz según el estado de la aplicación, persistencia del carrito mediante Local Storage y estados de carga y error durante la obtención del catálogo.
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
 - HTML5
 - CSS3
+- JavaScript
+- React
+- Vite
 - Bootstrap 5
-- Fetch API
 - JSON
+- Fetch API
 - Local Storage
-- ESLint
 - Git
 - GitHub
 - GitHub Pages
+- Visual Studio Code
+- ESLint
 
-## Conceptos de React implementados
+---
 
-### Componentes funcionales
+## ⚙️ Funcionalidades implementadas
 
-La interfaz se encuentra dividida en componentes funcionales independientes para mantener una estructura modular, clara y reutilizable.
+### 📦 Carga dinámica del catálogo
 
-Los principales componentes del proyecto son:
+Los productos utilizados por la aplicación se encuentran almacenados en:
+
+```text
+public/data/productos.json
+```
+
+El catálogo se carga dinámicamente mediante `fetch` dentro de un `useEffect`.
+
+Al recibir correctamente la información, los datos son utilizados para actualizar el estado del catálogo mediante `setProductos`.
+
+Cada producto contiene información como:
+
+- Nombre.
+- Categoría.
+- Precio normal.
+- Precio de oferta.
+- Descripción.
+- Imagen.
+
+De esta manera, los productos no se importan directamente desde JavaScript, sino que son obtenidos dinámicamente desde el archivo JSON.
+
+### 🧩 Componentes funcionales
+
+La aplicación está organizada mediante componentes funcionales reutilizables.
+
+Entre los principales componentes se encuentran:
 
 - `Header`
 - `Navbar`
@@ -71,107 +80,104 @@ Los principales componentes del proyecto son:
 - `ContactForm`
 - `Footer`
 
-### Props
+Esta organización permite separar las responsabilidades de la interfaz y mantener una estructura modular.
 
-Se utilizan propiedades (`props`) para comunicar información y funciones entre los componentes siguiendo el flujo de datos de React.
+### 🔄 Props y estados
 
-Por ejemplo, cada producto y las funciones necesarias para interactuar con el carrito son enviados desde `App` hacia `ProductCard`.
+La aplicación utiliza propiedades (`props`) para compartir información y funciones entre componentes.
 
-El componente `Cart` recibe el estado del carrito y las funciones para aumentar, disminuir y eliminar productos.
+El Hook `useState` administra diferentes estados de la aplicación, entre ellos:
 
-El componente `Navbar` recibe la cantidad total de productos para actualizar dinámicamente el contador del carrito.
-
-### useState
-
-El Hook `useState` se utiliza para gestionar información dinámica de la aplicación.
-
-Entre los estados administrados se encuentran:
-
-- Lista de productos del catálogo.
+- Catálogo de productos.
 - Productos seleccionados en el carrito.
 - Cantidades de productos.
 - Texto ingresado en el buscador.
 - Categoría seleccionada.
 - Estado de carga del catálogo.
-- Estado de error durante la carga de productos.
-- Datos ingresados en el formulario de contacto.
-- Estado del mensaje de confirmación del formulario.
+- Estado de error durante la carga.
+- Datos ingresados en el formulario.
+- Estado del envío del formulario.
 
-El catálogo se inicializa como un arreglo vacío y posteriormente se actualiza con los datos obtenidos dinámicamente desde el archivo JSON.
+### ⚡ useEffect y carga de productos
 
-### useEffect
+Al iniciar la aplicación, `useEffect` ejecuta una función asíncrona encargada de solicitar el archivo JSON mediante `fetch`.
 
-El proyecto utiliza `useEffect` para manejar distintos efectos secundarios.
-
-#### Carga dinámica de productos
-
-Al iniciar la aplicación, `useEffect` ejecuta una función asíncrona que utiliza `fetch` para solicitar el archivo:
+El flujo utilizado es:
 
 ```text
-public/data/productos.json
+productos.json
+      ↓
+    fetch()
+      ↓
+  useEffect()
+      ↓
+setProductos()
+      ↓
+actualización del catálogo
 ```
 
-Los datos obtenidos son transformados desde JSON y utilizados para actualizar el estado del catálogo mediante `setProductos`.
+Durante este proceso se administran estados de carga y error para informar adecuadamente al usuario.
 
-Durante este proceso también se administran estados de carga y error para entregar información clara al usuario.
+### 💾 useEffect y persistencia del carrito
 
-#### Persistencia del carrito
+La aplicación utiliza además otro `useEffect` para guardar automáticamente el contenido del carrito en Local Storage cuando se producen cambios.
 
-Otro `useEffect` guarda automáticamente el contenido del carrito en `localStorage` cada vez que este cambia.
+Gracias a esta funcionalidad, los productos y cantidades agregados permanecen disponibles después de actualizar o recargar la página.
 
-De esta manera, los productos y sus cantidades permanecen disponibles después de recargar la página.
+### 🔎 Búsqueda de productos
 
-### Carga dinámica de datos
+La aplicación incorpora un campo de búsqueda que permite localizar videojuegos por su nombre.
 
-Los productos no se importan directamente desde el código JavaScript.
+El contenido mostrado se actualiza dinámicamente mediante `onChange` y el estado administrado por React.
 
-El catálogo se obtiene dinámicamente mediante `fetch` desde un archivo JSON local ubicado en:
+### 🎮 Filtros por categoría
 
-```text
-public/data/productos.json
-```
+Los productos pueden filtrarse según su categoría.
 
-Esta implementación permite simular la obtención de información desde una fuente externa y actualizar el estado de la aplicación una vez recibidos los datos.
+Las categorías disponibles son:
 
-### Eventos
+- Todas.
+- Deportes.
+- Aventura.
+- Lucha.
 
-La aplicación utiliza distintos eventos para permitir la interacción del usuario:
+Los filtros pueden combinarse con la búsqueda por nombre.
 
-- `onClick` para agregar productos al carrito.
-- `onClick` para aumentar y disminuir cantidades.
-- `onClick` para eliminar completamente un producto.
-- `onChange` para actualizar la búsqueda, categoría seleccionada y campos del formulario.
-- `onSubmit` para procesar el formulario de contacto.
+### 🛒 Carrito de compras
 
-### Renderizado condicional
+El carrito permite:
 
-Se utiliza renderizado condicional para adaptar la interfaz al estado actual de la aplicación.
+- Agregar productos.
+- Incrementar cantidades mediante el botón `+`.
+- Disminuir cantidades mediante el botón `−`.
+- Eliminar automáticamente un producto cuando su cantidad llega a cero.
+- Eliminar completamente un producto mediante el botón `Eliminar`.
+- Solicitar confirmación antes de eliminar completamente un producto.
+- Visualizar la cantidad de cada producto.
+- Calcular el subtotal correspondiente.
+- Calcular la cantidad total de productos.
+- Calcular automáticamente el precio total de la compra.
+- Mantener el carrito después de recargar la página.
 
-Algunos ejemplos implementados son:
+### 🔀 Renderizado condicional
 
-- Mostrar `Cargando productos...` mientras se obtiene el catálogo.
-- Mostrar un mensaje de error cuando no es posible cargar los productos.
-- Mostrar un mensaje cuando los filtros no encuentran productos.
-- Mostrar un mensaje cuando el carrito está vacío.
-- Mostrar el contenido del carrito cuando existen productos agregados.
-- Mostrar `En el carrito` junto con la cantidad de unidades cuando un producto ya fue agregado.
-- Cambiar el texto del botón entre `Agregar al carrito` y `Agregar otra unidad`.
-- Cambiar el estilo del botón según el estado del producto.
-- Mostrar un mensaje de confirmación después de enviar el formulario de contacto.
+La interfaz modifica los elementos mostrados según el estado de la aplicación.
 
-### Persistencia de datos
+Entre los casos implementados se encuentran:
 
-El carrito se almacena utilizando `localStorage`.
+- Mensaje mientras se cargan los productos.
+- Mensaje cuando ocurre un error durante la carga.
+- Mensaje cuando el carrito está vacío.
+- Mensaje cuando una búsqueda o filtro no encuentra productos.
+- Indicador `En el carrito` cuando un producto ya fue agregado.
+- Visualización de la cantidad de unidades agregadas.
+- Cambio del botón `Agregar al carrito` por `Agregar otra unidad`.
+- Cambio del estilo del botón según el estado del producto.
+- Mensaje de confirmación después de enviar el formulario de contacto.
 
-Cuando la aplicación se inicia, recupera el carrito previamente almacenado. Posteriormente, `useEffect` actualiza el almacenamiento cada vez que cambia el estado del carrito.
+### 🧮 Funciones reutilizables
 
-Esto permite conservar los productos y cantidades incluso después de actualizar la página.
-
-## Reutilización y organización del código
-
-Para mejorar la claridad del proyecto y evitar duplicación de lógica, se incorporaron funciones reutilizables dentro de la carpeta `utils`.
-
-### Formato de precios
+Para evitar duplicación de código se incorporaron funciones auxiliares dentro de `src/utils`.
 
 El archivo:
 
@@ -179,9 +185,7 @@ El archivo:
 src/utils/formatters.js
 ```
 
-centraliza el formato monetario utilizado por los distintos componentes de la aplicación.
-
-### Cálculos del carrito
+centraliza el formato monetario utilizado por la aplicación.
 
 El archivo:
 
@@ -192,45 +196,104 @@ src/utils/cartUtils.js
 contiene funciones reutilizables para:
 
 - Calcular la cantidad total de productos.
-- Calcular el subtotal de cada producto.
-- Calcular el precio total del carrito.
+- Calcular el subtotal de un producto.
+- Calcular el valor total del carrito.
 
-Esta separación evita repetir cálculos dentro de los componentes y facilita el mantenimiento del código.
+### ⚡ Manejo de eventos
 
-## Mejoras implementadas en Semana 8
+La aplicación utiliza diferentes eventos de React, entre ellos:
 
-A partir del proyecto desarrollado previamente, durante la Semana 8 se incorporaron y optimizaron las siguientes funcionalidades:
+- `onClick`
+- `onChange`
+- `onSubmit`
+
+Estos eventos permiten controlar el carrito, filtros, búsqueda y formulario de contacto.
+
+### ✉️ Formulario de contacto
+
+La aplicación mantiene un formulario controlado mediante React.
+
+El formulario permite ingresar:
+
+- Nombre.
+- Correo electrónico.
+- Mensaje.
+
+Después de realizar el envío se muestra un mensaje de confirmación mediante renderizado condicional y los campos son limpiados automáticamente.
+
+### 🎠 Carrusel de productos
+
+La página incorpora un carrusel desarrollado con Bootstrap para mostrar videojuegos destacados.
+
+El carrusel permite:
+
+- Cambio automático de imágenes.
+- Navegación mediante controles anterior y siguiente.
+- Navegación mediante indicadores.
+
+### 📱 Diseño responsive
+
+La interfaz utiliza Bootstrap 5 y estilos CSS personalizados para adaptarse a diferentes tamaños de pantalla.
+
+Se realizaron pruebas tanto en resolución de escritorio como en dispositivos móviles.
+
+En resolución móvil, el catálogo reorganiza las tarjetas en una sola columna y adapta sus elementos al ancho disponible.
+
+### ♿ Accesibilidad
+
+Se incorporaron diferentes elementos orientados a mejorar la accesibilidad de la aplicación, entre ellos:
+
+- Textos alternativos en imágenes.
+- Etiquetas asociadas a campos de formulario.
+- Atributos `aria-label`.
+- Atributos `aria-labelledby`.
+- Mensajes con `role="alert"`.
+- Botones identificados según su función.
+
+---
+
+## 🆕 Mejoras implementadas en Semana 8
+
+A partir del proyecto desarrollado durante la Semana 7, esta versión incorpora:
 
 - Gestión del catálogo mediante `useState`.
-- Carga dinámica de productos utilizando `useEffect` y `fetch`.
-- Archivo JSON utilizado como fuente de datos del catálogo.
-- Estados de carga y error para la obtención de productos.
-- Renderizado condicional asociado a la carga del catálogo.
-- Renderizado condicional según la presencia de productos en el carrito.
-- Cambio de texto y estilo del botón según el estado del producto.
-- Eliminación completa de productos desde el carrito.
-- Confirmación antes de eliminar completamente un producto.
+- Carga dinámica del catálogo mediante `useEffect`.
+- Obtención de productos con `fetch`.
+- Archivo JSON local como fuente dinámica de datos.
+- Estados de carga y error.
+- Renderizado condicional según el estado de los productos.
+- Cambio de texto y estilo de botones según el carrito.
+- Eliminación completa de productos.
+- Confirmación antes de eliminar un producto.
 - Centralización del formato de precios.
-- Separación de los cálculos del carrito en funciones reutilizables.
-- Mantención de la persistencia del carrito mediante `localStorage`.
+- Separación de cálculos del carrito en funciones reutilizables.
+- Mantención de la persistencia mediante Local Storage.
 
-## Estructura principal del proyecto
+---
+
+## 📁 Estructura del proyecto
 
 ```text
 Francisco_PFY2201_React_Semana8/
 │
 ├── public/
 │   ├── capturas/
+│   │   ├── 01-carga-dinamica.png
+│   │   ├── 02-carrito.png
+│   │   ├── 03-renderizado-condicional.png
+│   │   ├── 04-carrito-vacio.png
+│   │   ├── 05-sin-resultados.png
+│   │   └── 06-responsive.png
+│   │
 │   ├── data/
 │   │   └── productos.json
-│   ├── img/
-│   │   ├── fc26.jpg
-│   │   ├── minecraft.jpg
-│   │   └── mortal-kombat.jpg
-│   ├── favicon.svg
-│   └── icons.svg
+│   │
+│   └── img/
+│       └── [imágenes utilizadas por la aplicación]
 │
 ├── src/
+│   ├── assets/
+│   │
 │   ├── components/
 │   │   ├── Cart.jsx
 │   │   ├── ContactForm.jsx
@@ -254,71 +317,57 @@ Francisco_PFY2201_React_Semana8/
 ├── .gitignore
 ├── eslint.config.js
 ├── index.html
-├── package.json
 ├── package-lock.json
-├── vite.config.js
-└── README.md
+├── package.json
+├── README.md
+└── vite.config.js
 ```
 
-## Instalación
+---
 
-Para ejecutar el proyecto localmente es necesario tener Node.js y npm instalados.
+## 🚀 Instalación y ejecución
 
-### 1. Clonar el repositorio
+Para ejecutar el proyecto localmente es necesario tener instalado Node.js.
+
+### Clonar el repositorio
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/FranciscoHenriquezAlvarez/Bimestre_08_DFI_Exp3_S8_FranciscoHenriquez.git
 ```
 
-### 2. Ingresar a la carpeta del proyecto
-
-```bash
-cd Francisco_PFY2201_React_Semana8
-```
-
-### 3. Instalar las dependencias
+### Instalar dependencias
 
 ```bash
 npm install
 ```
 
-## Ejecución en desarrollo
-
-Para iniciar el servidor de desarrollo:
+### Iniciar el servidor de desarrollo
 
 ```bash
 npm run dev
 ```
 
-Vite mostrará en la terminal la dirección local correspondiente a la aplicación.
+Vite mostrará en la terminal la dirección local donde se encuentra disponible la aplicación.
 
-Debido a la configuración utilizada para GitHub Pages, durante el desarrollo la aplicación se encuentra disponible bajo la ruta base del proyecto.
-
-## Verificación del código
-
-Para comprobar el proyecto mediante ESLint:
+### Verificar el código mediante ESLint
 
 ```bash
 npm run lint
 ```
 
-El proyecto fue verificado correctamente sin errores de ESLint.
-
-## Compilación de producción
-
-Para generar la versión optimizada de producción:
+### Generar la compilación de producción
 
 ```bash
 npm run build
 ```
 
-Este comando genera automáticamente la carpeta `dist`.
+La versión final de Semana 8 fue verificada correctamente mediante ESLint y compilada con Vite antes de su publicación.
 
-El proyecto fue compilado correctamente con Vite antes de su publicación.
+---
 
-## Despliegue
+## 🌐 Despliegue con GitHub Pages
 
-El proyecto utiliza el paquete `gh-pages` para publicar la versión de producción.
+El proyecto utiliza el paquete `gh-pages` para publicar la compilación de producción.
 
 El despliegue se realiza mediante:
 
@@ -326,96 +375,107 @@ El despliegue se realiza mediante:
 npm run deploy
 ```
 
-Este proceso ejecuta previamente la compilación de producción y publica el contenido de la carpeta `dist` en la rama `gh-pages`.
+Este comando genera la compilación y publica el contenido de la carpeta `dist` en la rama `gh-pages`.
 
-## Capturas de funcionamiento
+**Sitio publicado:**  
+https://franciscohenriquezalvarez.github.io/Bimestre_08_DFI_Exp3_S8_FranciscoHenriquez/
 
-Las capturas de esta sección evidenciarán las funcionalidades solicitadas para la actividad de Semana 8.
+**Repositorio GitHub:**  
+https://github.com/FranciscoHenriquezAlvarez/Bimestre_08_DFI_Exp3_S8_FranciscoHenriquez
+
+---
+
+## 🖼️ Evidencias de funcionamiento
 
 ### Carga dinámica del catálogo
 
-La aplicación obtiene los productos dinámicamente desde el archivo JSON utilizando `fetch` y `useEffect`, actualizando posteriormente el estado del catálogo.
+Los productos son obtenidos dinámicamente desde el archivo JSON mediante `fetch` y posteriormente se muestran en el catálogo.
 
-![Carga dinámica del catálogo de Mortal Store](public/capturas/01-carga-dinamica.png)
+![Carga dinámica del catálogo](public/capturas/01-carga-dinamica.png)
 
 ### Carrito de compras
 
 El carrito permite agregar productos, modificar cantidades, eliminar productos y calcular automáticamente subtotales y totales.
 
-![Carrito de compras de Mortal Store](public/capturas/02-carrito.png)
+![Carrito de compras](public/capturas/02-carrito.png)
 
 ### Renderizado condicional
 
-La interfaz cambia según el estado de la aplicación. Cuando un producto ya se encuentra agregado, se muestra un indicador con su cantidad y cambia el texto y estilo del botón correspondiente.
+Cuando un producto ya se encuentra agregado al carrito, la interfaz muestra su estado y cantidad y modifica el texto y estilo del botón.
 
-![Renderizado condicional en Mortal Store](public/capturas/03-renderizado-condicional.png)
+![Renderizado condicional](public/capturas/03-renderizado-condicional.png)
 
 ### Carrito vacío
 
-Cuando no existen productos agregados, la aplicación muestra un mensaje informativo mediante renderizado condicional.
+Cuando no existen productos agregados se muestra un mensaje informativo mediante renderizado condicional.
 
-![Mensaje de carrito vacío](public/capturas/04-carrito-vacio.png)
+![Carrito vacío](public/capturas/04-carrito-vacio.png)
 
 ### Búsqueda sin resultados
 
-Cuando no existen productos que coincidan con la búsqueda o categoría seleccionada, se muestra un mensaje mediante renderizado condicional.
+Cuando ningún producto coincide con los criterios de búsqueda se muestra un mensaje de advertencia.
 
-![Mensaje de búsqueda sin resultados](public/capturas/05-sin-resultados.png)
+![Búsqueda sin resultados](public/capturas/05-sin-resultados.png)
 
 ### Diseño responsive
 
-La interfaz se adapta a distintos tamaños de pantalla utilizando Bootstrap y estilos personalizados.
+La aplicación fue probada en un viewport móvil de 375 × 667 píxeles para comprobar la adaptación de la interfaz.
 
-![Vista responsive de Mortal Store](public/capturas/06-responsive.png)
+![Diseño responsive](public/capturas/06-responsive.png)
 
-## Pruebas realizadas
+---
 
-Antes de finalizar el proyecto se comprobaron las siguientes funcionalidades:
+## ✅ Pruebas realizadas
 
-- Carga dinámica de productos desde el archivo JSON.
-- Actualización del estado del catálogo después de cargar los datos.
-- Manejo del estado de error durante una carga fallida.
-- Restauración correcta del catálogo después de recuperar la fuente de datos.
-- Funcionamiento automático y manual del carrusel.
-- Navegación entre las distintas secciones.
-- Búsqueda de productos por nombre.
-- Filtro de productos por categoría.
-- Navegación directa a categorías desde el menú.
+Antes de finalizar la entrega se verificó:
+
+- Carga dinámica del catálogo.
+- Actualización del estado después de obtener los datos.
+- Manejo de errores durante una carga fallida.
+- Búsqueda de productos.
+- Filtro por categoría.
 - Agregar productos al carrito.
-- Aumentar cantidades.
-- Disminuir cantidades.
-- Eliminación automática de un producto al llegar a cantidad cero.
+- Aumentar y disminuir cantidades.
+- Eliminación automática al llegar a cero unidades.
 - Eliminación completa mediante el botón `Eliminar`.
-- Confirmación antes de eliminar completamente un producto.
+- Confirmación antes de eliminar.
 - Cálculo de subtotales.
-- Cálculo de cantidad total de productos.
-- Cálculo del precio total del carrito.
+- Cálculo del total de productos.
+- Cálculo del valor total del carrito.
 - Actualización del contador del carrito.
-- Cambio condicional del estado visual de los productos agregados.
-- Persistencia del carrito después de recargar la página.
+- Renderizado condicional de productos agregados.
 - Mensaje de carrito vacío.
-- Mensaje cuando una búsqueda no encuentra resultados.
-- Envío del formulario de contacto.
-- Mensaje de confirmación del formulario.
-- Visualización responsive.
+- Mensaje de búsqueda sin resultados.
+- Persistencia mediante Local Storage.
+- Formulario de contacto.
+- Diseño responsive.
 - Revisión de la consola del navegador.
 - Verificación mediante ESLint.
 - Compilación de producción mediante Vite.
 
-## Sitio publicado
+---
 
-La aplicación será publicada mediante GitHub Pages.
+## 📚 Actividad académica
 
-**URL:** pendiente de publicación.
+**Asignatura:** Desarrollo Frontend I (PFY2201)  
+**Actividad:** Experiencia 3 - Semana 8  
+**Proyecto:** Mortal Store  
+**Estudiante:** Francisco Henríquez  
 
-## Repositorio
+---
 
-El código fuente será almacenado en un repositorio público de GitHub correspondiente exclusivamente a la entrega de Semana 8.
+## 🔗 Enlaces del proyecto
 
-**GitHub:** pendiente de publicación.
+**Repositorio:**  
+https://github.com/FranciscoHenriquezAlvarez/Bimestre_08_DFI_Exp3_S8_FranciscoHenriquez
 
-## Estado del proyecto
+**Aplicación publicada:**  
+https://franciscohenriquezalvarez.github.io/Bimestre_08_DFI_Exp3_S8_FranciscoHenriquez/
 
-Proyecto funcional y responsive desarrollado con React y Vite.
+---
 
-La aplicación implementa gestión de estados con `useState`, efectos secundarios mediante `useEffect`, carga dinámica de datos con `fetch`, renderizado condicional, componentes reutilizables, persistencia mediante `localStorage` y una estructura modular orientada a buenas prácticas de desarrollo.
+## 📌 Estado del proyecto
+
+Proyecto finalizado, funcional, responsive y publicado mediante GitHub Pages.
+
+La aplicación implementa componentes funcionales, props, eventos, `useState`, `useEffect`, carga dinámica mediante `fetch`, renderizado condicional, persistencia con Local Storage y funciones reutilizables para mantener una estructura clara y modular.
